@@ -1,0 +1,473 @@
+:root {
+    --primary: #141313;
+    --primary-alt: #0a0a0a;
+    --white: #EEF1F4;
+    --white-alt: #adadad;
+    --white-alt2:rgb(221, 221, 221);
+    --secondary: #797a7e;
+    --secondary-alt: #646568;
+    --accent: #9A9AE6;
+    --accent-alt: #7a7ae6;
+    --size: 650px;
+    --primary-op: #0a0a0aa3;
+}
+
+body {
+    margin: 0;
+    background: var(--primary);
+    /* background: linear-gradient(0deg, var(--primary) 0%, var(--accent) 100%); */
+    font-family: 'Signika', sans-serif;
+    overflow: hidden;
+}
+
+.x-background {
+    animation: y 7s linear infinite alternate;
+    left: 0;
+    z-index: 0;
+    position: absolute;
+}
+
+.y-background{
+    animation: x 13s linear infinite alternate;
+    top: 100%;
+    z-index: 0;
+}
+
+@keyframes x {
+    100% {
+        transform: translateX(calc(100vw - var(--size)));
+      }
+}
+
+@keyframes y {
+    0%, 100% {
+        top: 50%;
+      }
+      
+      50% {
+        top: 0%;
+      }
+}
+
+@keyframes spin
+{
+    0%{
+        transform:rotate(0deg);
+      
+      }
+      100%{
+        transform:rotate(360deg);      }
+}
+
+* {
+    scrollbar-width: 8px;
+    scrollbar-color: var(--accent-alt);
+  }
+
+*::-webkit-scrollbar {
+    width: 8px;
+    color: #7a7ae6;
+}
+  
+*::-webkit-scrollbar-thumb {
+    background-color: var(--accent-alt);    
+    border-radius: 1px;      
+}
+
+#nav {
+    width: 190px;
+    height: 100vh;
+    background-color: var(--primary-alt);
+    position: fixed;
+    box-shadow: 0 -1px 4px 0 rgba(25, 32, 36, 0.04),
+    0 3px 6px 0 rgba(25, 32, 36, 0.16);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.icon {
+    color: var(--secondary-alt);
+    cursor: pointer;
+}
+
+.icon:hover {
+    color: var(--white-alt);
+}
+
+.icon-active {
+    color: var(--white);
+}
+
+#card-wrapper {
+    width: calc(100vw - 190px);
+    margin-left: 190px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.info-card {
+    width: 70vw;
+    height: 90vh;
+    margin-top: 10vh;
+    border-radius: 3rem 3rem 0 0;
+    animation: slidein 0.45s forwards ease-out;
+    position: absolute;
+}
+
+#group-card {
+    background-color: var(--primary-alt);
+    width: 70vw;
+    height: 90vh;
+    margin-top: 10vh;
+    border-radius: 3rem 3rem 0 0;
+    animation: slidein 0.45s forwards ease-out;
+}
+
+#name {
+    background-color: var(--accent);
+    width: 60vw;
+    height: 10vh;
+    margin-bottom: 10vh;
+    padding: 50px;
+    /* border-left: 50px; */
+    border-radius: 3rem 3rem 3rem 3rem;
+    animation: slidein 0.45s forwards ease-out;
+    
+}
+
+.content {
+    width: 70vw;
+    height: 70vh;
+    background-color: var(--primary-op);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: flex-start;
+    overflow-y: scroll;
+}
+
+#group-content {
+    width: 70vw;
+    height: 70vh;
+    padding: 50px;
+    overflow-y: scroll;
+}
+
+#contentgroupitem {
+    width: 70vw;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+
+}
+
+#groupitem {
+    padding-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 50px;
+}
+
+#ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.card-color{
+    background-color: var(--accent);
+}
+
+.card-outline{
+    border-radius: 1.5rem;
+}
+
+
+#contentgroups {
+    width: 70vw;
+    height: 70vh;
+    color: white;
+    padding-left: 50px;
+    padding-top: 50px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.banner {
+    background-color: var(--primary-alt);
+    border-radius: 3rem 3rem 0 0;
+    width: 70vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+.banner-game {
+    filter: blur(1rem);
+    width: 70vw;
+    object-fit: cover;
+}
+
+h1 {
+    color: var(--white-alt2);
+    font-size: 3rem;
+    align-self: center;
+    margin: 0 0 2vh 0;
+}
+
+h2{
+    color: var(--white-alt2);
+    font-size: 2rem;
+    align-self: center;
+    margin: 0 0 2vh 0;
+}
+
+#u {
+    color: var(--accent);
+}
+
+@keyframes slidein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 100;
+    }
+}
+
+.game {
+    width: 200px;
+    cursor: pointer;
+    filter: brightness(70%);
+}
+
+.game:hover {
+    animation: fadein 0.45s forwards ease-out;
+}
+
+@keyframes fadein {
+    0% {
+        filter: brightness(70%);
+    }
+
+    100% {
+        filter: brightness(100%);
+    }
+}
+
+.game-wrapper {
+    width: 200px;
+    border-radius: 2rem;
+    overflow: hidden;
+    height: 250px;
+    margin: 50px;
+}
+
+.game-data::-webkit-scrollbar {
+    width: 0;
+    display: none;
+}
+
+.game-data {
+    width: 70vw;
+    background-color: black;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    padding: 50px;
+    height: 30vh;
+    overflow-y: scroll;
+}
+
+.game-cont > h2 {
+    color: var(--white-alt);
+    width: 20vw;
+    font-size: 1rem;
+    font-weight: lighter;
+}
+
+.game-cont > h1 {
+    color: var(--white);
+    width: 20vw;
+    font-size: 2.2rem;
+}
+
+.game-data > i {
+    width: 200px;
+    color: var(--white);
+}
+
+.exit {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--secondary);
+    cursor: pointer;
+}
+
+.exit:hover {
+    color: rgb(172, 23, 23);
+}
+
+#form-card {
+	background-color: var(--white);
+	width: 70vw;
+	height: 90vh;
+	margin-top: 10vh;
+	border-radius: 3rem 3rem 0 0;
+	animation: slidein 0.45s forwards ease-out;
+}
+
+#form-content {
+    width: 70vw;
+	height: 70vh;
+    padding: 50px;
+    overflow: scroll;
+}
+
+#form-banner {
+    border-radius: 3rem 3rem 0 0;
+	width: 70vw;
+	height: 20vh;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#add-game-submit {
+    background-color: var(--accent);
+    color: white;
+    border-radius: 1rem;
+}
+
+.listing {
+    width: 65vw;
+    background-color: #000000;
+    margin: 0.2vw;
+    padding: 2vw;
+    display: flex;
+    color: var(--white);
+    font-size: 1.7rem;
+    justify-content: space-around;
+}
+
+.list-wrapper {
+    height: 40vh;
+}
+
+button {
+    background-color: var(--accent);
+    color: var(--primary);
+    min-height: 5vh;
+    box-sizing: border-box;
+    border: 0.1rem solid var(--accent);
+    border-radius: 1rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 2vh;
+}
+
+.form-width {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.profile {
+    width: 100px;
+    height: 100px;
+    border-radius: 10rem;
+    align-self: center;
+    margin-right: 30px;
+}
+
+.link {
+    color: var(--accent-alt);
+    cursor: pointer;
+}
+
+#join-community {
+    background-color: var(--primary-alt);
+    color: var(--accent);
+    box-sizing: border-box;
+    border: 0.1rem solid var(--primary);
+    border-radius: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 1.5vh;
+}
+
+
+#join-community:hover {
+    border: 0.1rem solid var(--accent);
+}
+
+input[type=checkbox] {
+    accent-color: var(--accent);
+}
+
+#options-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2vh;
+    margin-top: 4vh;
+    color: var(--secondary-alt);
+}
+
+a:link {
+    color: var(--accent-alt);
+    text-decoration: none;
+  }
+  
+a:hover {
+    text-decoration: underline;
+  }
+
+a:visited {
+    color: var(--accent-alt);
+    background-color: transparent;
+    text-decoration: none;
+}
+
+#add-game-submit {
+    color: var(--white);
+    font-size: 1.2rem;
+    padding: 1.2vh;
+    margin-bottom: 4vh;
+    margin-top: 2vh;
+    width: 100%;
+}
+
+#add-game-submit:hover {
+    background-color: var(--accent-alt);
+}
+
+#login-button {
+    color: var(--white);
+    font-size: 1.2rem;
+    padding: 1.2vh;
+    margin-bottom: 4vh;
+    margin-top: 2vh;
+    width: 100%;
+}
+
+#login-button:hover {
+    background-color: var(--accent-alt);
+}
+
+#logout-button {
+    margin-left: 80%;
+}
+
+.subheading {
+    text-align: center;
+    color: var(--secondary);
+}
