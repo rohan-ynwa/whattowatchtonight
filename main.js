@@ -11,7 +11,6 @@ window.onload = async function () {
 // let icons = [];
 // let games = [];
 const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = "";
 const IMG_URL = "https://image.tmdb.org/t/p/original";
 
 let movie_prov_id = [];
@@ -64,7 +63,6 @@ function selectProvider() {
     else {
         this.classList.add('selected');
         movie_prov_id.push(this.id);
-        console.log(movie_prov_id);
     }
 }
 
@@ -81,111 +79,84 @@ async function getMovies() {
         data.results
     )
     .catch(error => console.warn(error));
-    // let element = document.getElementById("gamesRented");
-    // for (let i = 0; i < rentedGames.length; i++) {
-    //     let div = document.createElement("div");
-    //     div.className = "game-wrapper";
-    //     div.innerHTML = `
-    //         <img src="../img/${images[rentedGames[i]]}.jpeg" class="game" id=${rentedGames[i]}>
-    //     `
-    //     div.children[0].addEventListener('click', gameInfo);
-    //     element.appendChild(div);
-    // }
 }
 
 function generateMovies(movies) {
     let parent = document.getElementById("content");
-    console.log(movies);
     movies.forEach(movie => {
         let img = document.createElement('img');
         img.src = IMG_URL + movie.poster_path;
         img.id = movie.id;
         img.classList.add("movie");
-        // img.addEventListener('click', selectProvider);
+        img.loading = "lazy";
+        img.addEventListener('click', movieInfo);
         parent.appendChild(img);
     });
 }
 
-// async function gameInfo() {
-//     let parent = document.getElementById("card-wrapper");
-//     let card = document.createElement("div");
-//     card.classList.add("info-card");
-//     card.id = 'gameCard';
+function movieInfo() {
+    getMovieInfo(this.id).then(response => generateMovieInfo(response));
+}
 
-//     let banner = document.createElement("div");
-//     banner.classList.add("banner");
+async function getMovieInfo(id) {
+    const URL_MOVIE_INFO = BASE_URL + "/movie/" + id + "?api_key=" + API_KEY;
+    return fetch(URL_MOVIE_INFO).then(res => res.json())
+    .catch(error => console.warn(error));
+}
 
-//     let content = document.createElement("div");
-//     content.classList.add("content");
+function generateMovieInfo(info) {
+    console.log(info)
+    let parent = document.getElementById("card-wrapper");
+    let card = document.createElement("div");
+    card.classList.add("info-card");
+    card.id = 'gameCard';
 
-//     let background = document.createElement("img");
-//     background.src = this.src;
-//     background.classList.add("banner-game");
+    let banner = document.createElement("div");
+    banner.classList.add("banner");
 
-//     let gameData = document.createElement("div");
-//     gameData.classList.add("game-data");
+    let content = document.createElement("div");
 
-//     let gameArt = document.createElement("img");
-//     gameArt.src = this.src;
+    let background = document.createElement("img");
+    background.src = IMG_URL + info.backdrop_path;
+    background.classList.add("banner-game");
 
-//     let gameCont = document.createElement("div");
-//     gameCont.classList.add("game-cont");
+    let gameData = document.createElement("div");
+    gameData.classList.add("game-data");
 
-//     let gameHead = document.createElement("h1");
+    let gameArt = document.createElement("img");
+    gameArt.src = IMG_URL + info.poster_path;
 
-//     gameHead.innerHTML = gameNames[this.id]
+    let gameCont = document.createElement("div");
+    gameCont.classList.add("game-cont");
 
-//     let gameDis = document.createElement("h2");
-//     gameDis.innerHTML = gameDetails["description"];
+    let gameHead = document.createElement("h1");
 
-//     let gameGroup = document.createElement("button");
-//     gameGroup.innerHTML = "Join Community";
-//     gameGroup.id = 'join-community';
-//     let gameName = gameNames[this.id]
+    gameHead.innerHTML = info.title;
 
-//     gameGroup.addEventListener('click', async e => {
-//         if (ls.getItem('loggedIn') === 'true') {
-//             let res = await crud.createCommunity(gameName, ls.getItem('loggedInUser'));
-//             if (!res.ok) {
-//                 if (res.error === 'Already in this community') {
-//                     window.alert('You are already in this community!');
-//                 }
-//                 else {
-//                     window.location.href = 'groups.html';
-//                 }
-//             }
-//         } else {
-//             window.alert("You need to be logged in to join a community!");
-//         }
-//     });
+    let gameDis = document.createElement("h2");
+    gameDis.innerHTML = info.overview;
 
-//     let exit = document.createElement("div");
-//     exit.innerHTML = "X";
-//     exit.classList.add("exit");
+    let exit = document.createElement("div");
+    exit.innerHTML = "X";
+    exit.classList.add("exit");
 
-//     exit.addEventListener('click', () => document.getElementById("gameCard").remove());
+    exit.addEventListener('click', () => document.getElementById("gameCard").remove());
 
-//     let list = document.createElement("div");
-//     list.classList.add('list-wrapper');
-//     addRentals(list, gameNames[this.id]);
-
-//     //banner
-//     banner.appendChild(background);
-//     card.appendChild(banner);
-//     //Discription
-//     gameCont.appendChild(gameHead);
-//     gameCont.appendChild(gameDis);
-//     gameCont.appendChild(gameGroup);
-//     //content
-//     gameData.appendChild(gameArt);
-//     gameData.appendChild(gameCont);
-//     gameData.appendChild(exit);
-//     content.appendChild(gameData);
-//     content.appendChild(list);
-//     card.appendChild(content);
-//     //adding to page
-//     parent.appendChild(card);
-// }
+    //banner
+    banner.appendChild(background);
+    card.appendChild(banner);
+    //Discription
+    gameCont.appendChild(gameHead);
+    gameCont.appendChild(gameDis);
+    //content
+    gameData.appendChild(gameArt);
+    gameData.appendChild(gameCont);
+    gameData.appendChild(exit);
+    content.appendChild(gameData);
+    card.appendChild(content);
+    //adding to page
+    parent.appendChild(card);
+}
 
 
 

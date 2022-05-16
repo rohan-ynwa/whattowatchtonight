@@ -229,7 +229,6 @@ h2{
 }
 
 .game-data {
-    width: 70vw;
     background-color: black;
     display: flex;
     justify-content: space-evenly;
@@ -448,11 +447,11 @@ h1 {
     margin: 30px;
 }
 
-.provider:hover {
+.provider:hover, .movie:hover {
     animation: fadein 0.45s forwards ease-out;
 }
 
-.selected, .selected:hover, .movie:hover {
+.selected, .selected:hover {
     filter: brightness(1);
 }
 
