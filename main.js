@@ -16,12 +16,12 @@ const IMG_URL = "https://image.tmdb.org/t/p/original";
 let movie_prov_id = [];
 
 async function init() {
-    if (document.URL.includes("index.html")) {
-        getProviders().then(response => generateSelections(response));
-        document.getElementById("continue").addEventListener('click', toMovies)
-    }
     if (document.URL.includes("movies.html")) {
         getMovies().then(response => generateMovies(response));
+    }
+    else {
+        getProviders().then(response => generateSelections(response));
+        document.getElementById("continue").addEventListener('click', toMovies)
     }
 }
 
